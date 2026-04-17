@@ -9,11 +9,17 @@ const CLIENT_SECRET = "secret123";
 const SECRET = "jwt_secret";
 
 // AUTHORIZE
+const REDIRECT_URI = "https://netbank-onyx.vrg.asia/mcp/oauth/callback";
+
 app.get("/authorize", (req, res) => {
   const { client_id, redirect_uri } = req.query;
 
   if (client_id !== CLIENT_ID) {
     return res.status(400).send("Invalid client");
+  }
+
+  if (redirect_uri !== REDIRECT_URI) {
+    return res.status(400).send("Invalid redirect URI");
   }
 
   const code = "sample_code";
